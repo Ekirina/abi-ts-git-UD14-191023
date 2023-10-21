@@ -18,8 +18,10 @@ telefono varchar(9),
 codigo_dep int,
 responsable int,
 foreign key (responsable) references Empleado (num_trabajador)
-on delete no action on update cascade,
+on delete cascade on update cascade,
 foreign key (codigo_dep) references Departamento (codigo_departamento)
+on delete cascade on update cascade
+
 );
 create table Contrato(
 id int auto_increment primary key,
@@ -28,7 +30,7 @@ fecha_inicio date,
 fecha_final date,
 num_trabajador int,
 foreign key (num_trabajador) references Empleado(num_trabajador)
-
+on delete cascade on update cascade
 );
 
 create table Nomina(
@@ -37,6 +39,6 @@ fecha date,
 salario double,
 id_contrato int,
 foreign key (id_contrato) references Contrato(id)
-);
+on delete cascade on update cascade
 
-show tables;
+);

@@ -19,6 +19,8 @@ num_paso int,
 descripcion varchar(400),
 id_receta int,
 foreign key (id_receta) references Receta(id)
+on delete cascade on update cascade
+
 );
 
 create table Ingrediente(
@@ -35,8 +37,10 @@ tipo varchar (20)
 create table Etiqueta_Receta(
 nombre_etiqueta varchar(20) not null,
 id_receta int not null,
-foreign key (nombre_etiqueta) references Etiqueta(nombre),
-foreign key (id_receta) references Receta(id),
+foreign key (nombre_etiqueta) references Etiqueta(nombre)
+on delete cascade on update cascade,
+foreign key (id_receta) references Receta(id)
+on delete cascade on update cascade,
 primary key (nombre_etiqueta, id_receta)
 );
 
@@ -44,15 +48,20 @@ create table Ingrediente_Receta(
 id_receta int not null,
 nombre_ingrediente varchar(20) not null,
 primary key(id_receta, nombre_ingrediente),
-foreign key (id_receta) references Receta(id),
+foreign key (id_receta) references Receta(id)
+on delete cascade on update cascade,
 foreign key (nombre_ingrediente) references Ingrediente(nombre)
+on delete cascade on update cascade
 );
 
 create table Receta_Utensilio(
 id_receta int not null,
 nombre_utensilio varchar(20) not null,
 primary key (id_receta, nombre_utensilio),
-foreign key (id_receta) references Receta(id),
+foreign key (id_receta) references Receta(id)
+on delete cascade on update cascade,
 foreign key (nombre_utensilio) references Utensilio(nombre)
+on delete cascade on update cascade
+
 );
 
