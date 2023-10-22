@@ -73,7 +73,13 @@ create table vuelo_aeropuerto(
 	codigo_vuelo int,
     codigo_aeropuerto_salida int,
     codigo_aeropuerto_llegada int,
-    primary key (codigo_vuelo, codigo_aeropuerto_salida, codigo_aeropuerto_llegada)
+    primary key (codigo_vuelo, codigo_aeropuerto_salida, codigo_aeropuerto_llegada),
+    foreign key (codigo_vuelo) references vuelo(codigo)
+    on delete cascade on update cascade,
+    foreign key (codigo_aeropuerto_salida) references aeropuerto(codigo)
+    on delete cascade on update cascade,
+    foreign key (codigo_aeropuerto_llegada) references aeropuerto(codigo)
+    on delete cascade on update cascade
 );
 
 create table cliente_vuelo(
